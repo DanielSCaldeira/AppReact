@@ -7,6 +7,7 @@ const screenHeight = Dimensions.get('screen').height;
 
 const customSquareStyles = StyleSheet.create({
     container: {
+        backgroundColor: colors.white,
         width: screenWidth * 0.18,
         height: screenHeight * 0.08,
         justifyContent: 'center',
