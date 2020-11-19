@@ -1,4 +1,14 @@
 {
   "name": "AppFuncef",
-  "displayName": "AppFuncef"
+  "displayName": "AppFuncef",
+  "colors": {
+    "white": "#fff",
+    "lightGray": "#ccc",
+    "borderGray": "#ebeaea",
+    "textGray": "#585858",
+    "titleGray": "#949494",
+    "primary": "#0062AC",
+    "secondary": "#2B80AF",
+    "secondaryVariant": "#4695BF"
+  }
 }
