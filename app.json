@@ -10,5 +10,8 @@
     "primary": "#0062AC",
     "secondary": "#2B80AF",
     "secondaryVariant": "#4695BF"
+  },
+  "fonts" : {
+    "primary" : "Dosis"
   }
 }

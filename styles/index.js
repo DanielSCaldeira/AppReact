@@ -1,39 +1,23 @@
-import { Dimensions, StyleSheet } from 'react-native';
-import { colors } from '../app.json';
-import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { Dimensions } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
+
+import { colors, fonts } from '../app.json';
+import { defaultStyles} from './default'
+import { customSquareStyles} from './customSquare'
+import { headerStyles} from './header'
+import { loginStyles} from './login'
 
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
-const customSquareStyles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.white,
-        width: screenWidth * 0.18,
-        height: screenHeight * 0.08,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: colors.titleGray,
-        borderWidth: RFValue(1),
-        borderTopLeftRadius: RFValue(20),
-        borderTopStartRadius: RFValue(20),
-        borderBottomRightRadius: RFValue(20),
-        borderBottomEndRadius: RFValue(20),
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.4,
-        shadowRadius: 2.62,
-        elevation: 4,
-    }
-});
+const defaultS = defaultStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const customSquare = customSquareStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const login = loginStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const header = headerStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 
-const headerStyles = StyleSheet.create({
-    image: {
-        width: screenWidth * 0.12,
-        height: screenHeight * 0.06,
-    }
-});
-
-export { customSquareStyles, headerStyles }
+export { 
+    defaultS as defaultStyles,
+    customSquare as customSquareStyles, 
+    header as headerStyles, 
+    login as loginStyles 
+}

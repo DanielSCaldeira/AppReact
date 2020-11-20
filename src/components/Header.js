@@ -9,9 +9,11 @@ export const HeaderComponent = props => {
     const image = (<Image source={logo} style={headerStyles.image}></Image>);
 
     return (
-        <>
-            <CustomSquare body={image} />
-            <Image source={logo} style={headerStyles.image}></Image>
-        </>
+        <View style={headerStyles.container}>
+            <View style={headerStyles.divisor} />
+            <View style={headerStyles.imageView}>
+                <CustomSquare body={image} />
+            </View>
+        </View>
     )
 };

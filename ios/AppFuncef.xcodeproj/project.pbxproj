@@ -20,6 +20,7 @@
 		8FD309048EEC8A5641C95913 /* libPods-AppFuncef.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA43BA1ECDF49C8044CF7F19 /* libPods-AppFuncef.a */; };
 		D4943F60E8E75A91EE041DE0 /* libPods-AppFuncef-AppFuncefTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2016C7AE53DDCEF9ED6E4AE /* libPods-AppFuncef-AppFuncefTests.a */; };
 		E7DA84217822F4DA236C11E9 /* libPods-AppFuncef-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D65AFB84AD075BA8A1970EB /* libPods-AppFuncef-tvOS.a */; };
+		FA52AFE92567E4EF002E56F1 /* Dosis-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA52AFE82567E4EF002E56F1 /* Dosis-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F67E6423A723EA6654780B2C /* Pods-AppFuncef-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppFuncef-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-AppFuncef-tvOSTests/Pods-AppFuncef-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA52AFE82567E4EF002E56F1 /* Dosis-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		FF3C9761FDC0E41178FF3C4F /* Pods-AppFuncef-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppFuncef-tvOS.release.xcconfig"; path = "Target Support Files/Pods-AppFuncef-tvOS/Pods-AppFuncef-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* AppFuncef */ = {
 			isa = PBXGroup;
 			children = (
+				FA52AFE72567E4EF002E56F1 /* Resources */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -195,6 +198,15 @@
 				2D02E4901E0B4A5D006451C7 /* AppFuncef-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FA52AFE72567E4EF002E56F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA52AFE82567E4EF002E56F1 /* Dosis-VariableFont_wght.ttf */,
+			);
+			name = Resources;
+			path = AppFuncef/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +353,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				FA52AFE92567E4EF002E56F1 /* Dosis-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +732,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AppFuncef/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -742,6 +756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AppFuncef/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
