@@ -13,5 +13,9 @@ export const loginStyles = (screenWidth, screenHeight, colors, fonts, RFValue) =
     },
     textMargin: {
         marginBottom : screenHeight * 0.03
+    },
+    primaryButton : {
+        marginTop : screenHeight * 0.03,
+        backgroundColor: colors.primary
     }
 });

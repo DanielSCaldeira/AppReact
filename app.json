@@ -9,7 +9,8 @@
     "titleGray": "#949494",
     "primary": "#0062AC",
     "secondary": "#2B80AF",
-    "secondaryVariant": "#4695BF"
+    "secondaryVariant": "#4695BF",
+    "error": "#ed2f2f"
   },
   "fonts" : {
     "primary" : "Dosis"
