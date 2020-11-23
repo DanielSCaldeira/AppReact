@@ -36,8 +36,8 @@ export const InputFuncef = props => {
         <>
             {value ? <Label style={inputStyles.label} >{label}</Label > : null}
             <Item
-                success={value && isValid}
-                error={value && isValid === false}
+                success={value !== null && value !== undefined && value !== '' && isValid === true}
+                error={value !== null && value !== undefined && value !== '' && isValid === false}
                 style={[inputStyles.input]}>
                 <Input
                     placeholder={placeholder}

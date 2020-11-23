@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Image } from 'react-native'
+import { View, Image, Text } from 'react-native'
 import { CustomSquare } from './CustomSquare';
 import logo from '../../assets/marca_funcef.png';
-import { headerStyles } from '../../styles'
+import { headerStyles, defaultStyles } from '../../styles'
 
 export const HeaderComponent = props => {
 
@@ -10,7 +10,9 @@ export const HeaderComponent = props => {
 
     return (
         <View style={headerStyles.container}>
-            <View style={headerStyles.divisor} />
+            <View style={headerStyles.divisor}>
+                {props.title && <Text style={defaultStyles.fontDefault, headerStyles.text}>{props.title}</Text>}
+            </View>
             <View style={headerStyles.imageView}>
                 <CustomSquare body={image} />
             </View>
