@@ -2,7 +2,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const headerStyles = (screenWidth, screenHeight, colors, fonts, RFValue) => StyleSheet.create({
     container: {
-        paddingVertical : screenHeight * 0.02
+        paddingVertical : screenHeight * 0.02,
+        zIndex:10
     },
     imageView: {
         position: 'absolute',

@@ -6,6 +6,7 @@ import { defaultStyles} from './default';
 
 // PAGES
 import { loginStyles} from './pages/login';
+import { homeStyles} from './pages/home';
 
 // COMPONENTS
 import { customSquareStyles} from './components/customSquare';
@@ -19,6 +20,7 @@ const screenHeight = Dimensions.get('screen').height;
 const defaultS = defaultStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 
 const login = loginStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const home = homeStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 
 const customSquare = customSquareStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 const input = inputStyles(screenWidth, screenHeight, colors, fonts, RFValue);
@@ -31,5 +33,6 @@ export {
     header as headerStyles, 
     login as loginStyles,
     input as inputStyles,
-    switchS as switchStyles
+    switchS as switchStyles,
+    home as homeStyles
 }

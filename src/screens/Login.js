@@ -98,6 +98,7 @@ export class LoginScreen extends React.Component {
                     const usuario = result.data.Objeto;
                     this.setState({ loading: false });
                     this.props.navigation.navigate('Home', { usuario });
+                    return;
                 }
             }
         } catch (e) {

@@ -33,6 +33,9 @@ export const defaultStyles = (screenWidth, screenHeight, colors, fonts, RFValue)
         alignItems: 'center',
         justifyContent: 'center'
     },
+    spaceBetween: {
+        justifyContent: 'space-between'
+    },  
     spinnerText: {
         fontFamily : fonts.primary,
         color: colors.white

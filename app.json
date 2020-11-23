@@ -3,6 +3,7 @@
   "displayName": "AppFuncef",
   "colors": {
     "white": "#fff",
+    "backgroundGray": "#f9f9f9",
     "lightGray": "#ccc",
     "borderGray": "#ebeaea",
     "textGray": "#585858",
@@ -11,7 +12,9 @@
     "secondary": "#2B80AF",
     "secondaryVariant": "#4695BF",
     "third": "#f57c00",
-    "error": "#ed2f2f"
+    "error": "#ed2f2f",
+    "product1Header": "#1896B3",
+    "product1Body": "#1896B3CC"
   },
   "fonts" : {
     "primary" : "Dosis"
