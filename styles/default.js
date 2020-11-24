@@ -35,7 +35,13 @@ export const defaultStyles = (screenWidth, screenHeight, colors, fonts, RFValue)
     },
     spaceBetween: {
         justifyContent: 'space-between'
+    }, 
+    spaceAround: {
+        justifyContent: 'space-around'
     },  
+    spaceEvenly: {
+        justifyContent: 'space-evenly'
+    }, 
     spinnerText: {
         fontFamily : fonts.primary,
         color: colors.white

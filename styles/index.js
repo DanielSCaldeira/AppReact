@@ -13,6 +13,8 @@ import { customSquareStyles} from './components/customSquare';
 import { headerStyles} from './components/header';
 import { inputStyles} from './components/input';
 import { switchStyles} from './components/switch';
+import { menuStyles } from './components/menu';
+import { footerStyles } from './components/footer';
 
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
@@ -26,6 +28,8 @@ const customSquare = customSquareStyles(screenWidth, screenHeight, colors, fonts
 const input = inputStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 const header = headerStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 const switchS = switchStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const menu = menuStyles(screenWidth, screenHeight, colors, fonts, RFValue);
+const footer = footerStyles(screenWidth, screenHeight, colors, fonts, RFValue);
 
 export { 
     defaultS as defaultStyles,
@@ -34,5 +38,7 @@ export {
     login as loginStyles,
     input as inputStyles,
     switchS as switchStyles,
-    home as homeStyles
+    home as homeStyles,
+    menu as menuStyles,
+    footer as footerStyles
 }

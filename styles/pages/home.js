@@ -7,9 +7,7 @@ export const homeStyles = (screenWidth, screenHeight, colors, fonts, RFValue) =>
         backgroundColor: colors.lightGray
     },
     footer: {
-        flex:0.1,
-        width: screenWidth,
-        backgroundColor: colors.primary
+        flex:0.1
     },
     banner: {
         marginTop: -(screenHeight * 0.025),
@@ -29,7 +27,9 @@ export const homeStyles = (screenWidth, screenHeight, colors, fonts, RFValue) =>
     },
     cardHeader: {
         backgroundColor: colors.product1Header,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
     },
     cardHeaderText: {
         color: colors.white,
@@ -37,10 +37,33 @@ export const homeStyles = (screenWidth, screenHeight, colors, fonts, RFValue) =>
     },
     cardBody: {
         backgroundColor: colors.product1Body,
-        height: screenHeight * 0.15
+        height: screenHeight * 0.15,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
     },
     productLine : {
         width: screenWidth * 0.88,
         marginBottom: screenHeight* 0.01,
     },
+    meuSaldoHeader: {
+        backgroundColor : colors.primary,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+    },
+    meuSaldoBody: {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        backgroundColor: colors.white,
+        borderColor: colors.primary,
+        borderWidth: 2
+    },
+    meuSaldoValueText: {
+        color: colors.product1Header,
+        fontWeight: 'bold'
+    },
+    rowText:{
+        color: colors.product1Header,
+        fontWeight: 'bold',
+        marginLeft: screenWidth* 0.01,
+    }
 });
