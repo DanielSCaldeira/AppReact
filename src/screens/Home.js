@@ -36,8 +36,6 @@ export class Home extends React.Component {
     }
 
     render() {
-        const { params } = this.props?.route;
-        const { usuario } = params;
         const { banner, showAllOptions } = this.state;
 
         return (
@@ -48,7 +46,7 @@ export class Home extends React.Component {
                 textStyle={defaultStyles.spinnerText}
             /> */}
                 <SafeAreaView style={{ flex: 1 }}>
-                    <HeaderComponent title={usuario.Nome} />
+                    <HeaderComponent />
                     {showAllOptions === false && banner ? <Image source={{ uri: banner }} style={homeStyles.banner} /> : null}
                     <View style={homeStyles.body}>
                         <Content ref={ref => this.contentView = ref}>

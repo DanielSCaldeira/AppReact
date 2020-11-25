@@ -1,124 +1,35 @@
 import React from 'react';
-import { View, TouchableOpacity, Alert } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Container, Content, Body, Text, Button } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
 import { HeaderComponent } from '../components/Header';
-
-
 import { loginStyles, defaultStyles } from '../../styles';
 import { isValidCPF, formatCpf, removeCPFCarecteresEspeciais } from '../utils/cpf';
 import { InputFuncef } from '../components/Input'
 import { SwitchFuncef } from '../components/Switch';
 import { executeRequest } from '../services/api';
-import Spinner from 'react-native-loading-spinner-overlay';
+
+// import necessarios para o redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { 
+    setCpf,
+    setSenha,
+    setPermanecerLogado,
+    efetuarLogin
+} from '../redux/actions/login';
 
 Ionicons.loadFont();
 
-export class LoginScreen extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.setCPF = this.setCPF.bind(this);
-        this.setSenha = this.setSenha.bind(this);
-        this.setPermanecerLogado = this.setPermanecerLogado.bind(this);
-        this.efetuarLogin = this.efetuarLogin.bind(this);
-    }
-
-    state = {
-        cpf: '',
-        isCPFValido: null,
-        senha: '',
-        isSenhaValida: null,
-        permanecerLogado: false,
-        loading: false,
-        showToast: false
-    }
-
-    setCPF(cpf) {
-        cpf = removeCPFCarecteresEspeciais(cpf);
-        this.setState({ cpf });
-        if (cpf.length === 11) {
-            if (isValidCPF(cpf)) {
-                this.setState({ isCPFValido: true })
-            } else {
-                this.setState({ isCPFValido: false })
-            }
-        } else {
-            this.setState({ isCPFValido: null })
-        }
-    }
-
-    setSenha(senha) {
-        this.setState({ senha });
-
-        const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-
-        if (regexSenha.test(senha)) {
-            this.setState({ isSenhaValida: true });
-        } else {
-            this.setState({ isSenhaValida: false });
-        }
-    }
-
-    setPermanecerLogado(permanecerLogado) {
-        this.setState({ permanecerLogado });
-    }
-
-    showAlert(title, msg) {
-        Alert.alert(
-            title,
-            msg,
-            [
-                { text: "OK" }
-            ],
-            { cancelable: false }
-        );
-    }
-
-    async efetuarLogin() {
-        const { cpf, senha, isCPFValido, isSenhaValida, permanecerLogado } = this.state;
-
-        if (!cpf || !isCPFValido || !senha || !isSenhaValida) {
-            this.showAlert('Erro!', 'Favor verifique o cpf e senha digitado.');
-            return;
-        }
-
-        let errorMessage = 'Ocorreu um erro ao buscar, favor tente novamente e se o erro persistir entre em contato.'
-        try {
-            this.setState({ loading: true });
-            const result = await executeRequest('https://cursoreact.getsandbox.com/login', 'GET');
-
-            if (result && result.data) {
-                if (result.data.Sucesso === false && result.data.Mensagem) {
-                    errorMessage = result.data.Mensagem;
-                }
-
-                if (result.data.Sucesso === true) {
-                    const usuario = result.data.Objeto;
-                    this.setState({ loading: false });
-                    this.props.navigation.navigate('Home', { usuario });
-                    return;
-                }
-            }
-        } catch (e) {
-            console.log(e);
-        }
-
-        this.setState({ loading: false });
-        this.showAlert('Erro!', errorMessage);
-    }
-
+class LoginScreen extends React.Component {
     render() {
-        const { cpf, isCPFValido, senha, isSenhaValida, permanecerLogado } = this.state;
+        const { login, setCpf, setSenha, setPermanecerLogado, efetuarLogin } = this.props;
 
         return (
             <Container>
-                <Spinner
-                    visible={this.state.loading}
-                    textContent={'Efetuando Login...'}
-                    textStyle={defaultStyles.spinnerText}
-                />
                 <Content>
                     <HeaderComponent />
                     <Body style={loginStyles.body}>
@@ -131,23 +42,23 @@ export class LoginScreen extends React.Component {
                         </View>
 
                         <InputFuncef
-                            value={formatCpf(cpf)}
-                            isValid={isCPFValido}
+                            value={formatCpf(login?.cpf)}
+                            isValid={login?.isCPFValido}
                             placeholder="Digite seu CPF"
                             label="CPF:"
-                            setValue={this.setCPF}
+                            setValue={setCpf}
                             maxLength={14}
                             errorMessage="CPF inválido"
                             keyboardType="numeric"
                         />
 
-                        {isCPFValido && <>
+                        {login?.isCPFValido && <>
                             <InputFuncef
-                                value={senha}
-                                isValid={isSenhaValida}
+                                value={login?.senha}
+                                isValid={login?.isSenhaValida}
                                 placeholder="Digite sua senha"
                                 label="Senha:"
-                                setValue={this.setSenha}
+                                setValue={setSenha}
                                 maxLength={12}
                                 errorMessage="A senha deve conter pelo menos 8 dígitos, pelo menos 1 número e 1 caractér especial"
                                 secureTextEntry={true}
@@ -157,12 +68,12 @@ export class LoginScreen extends React.Component {
                                 title="Deseja salvar a senha?"
                                 negativeOption="Não"
                                 positiveOption="Sim"
-                                onSwitchChange={this.setPermanecerLogado}
-                                isEnabled={permanecerLogado}
+                                onSwitchChange={setPermanecerLogado}
+                                isEnabled={login?.permanecerLogado}
                                 style={loginStyles.textMargin}
                             />
 
-                            <Button block style={defaultStyles.primaryButton} onPress={this.efetuarLogin}><Text>Acessar</Text></Button>
+                            <Button block style={defaultStyles.primaryButton} onPress={() => efetuarLogin(login, this.props.navigation)}><Text>Acessar</Text></Button>
 
                             <View style={[loginStyles.actionsMargin]}></View>
 
@@ -171,7 +82,7 @@ export class LoginScreen extends React.Component {
                             </TouchableOpacity>
                         </>}
 
-                        {!isCPFValido && <View style={[loginStyles.actionsMargin]}></View>}
+                        {!login?.isCPFValido && <View style={[loginStyles.actionsMargin]}></View>}
 
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('NotLogged')}>
                             <Text style={[loginStyles.loginText, loginStyles.notLoggedLink]}>Acessar como visitante</Text>
@@ -182,3 +93,17 @@ export class LoginScreen extends React.Component {
         );
     }
 }
+
+const mapStoreToProps = store => ({
+    login: store.login,
+});
+
+const mapActionsToProps = dispatch => bindActionCreators({
+    setCpf,
+    setSenha,
+    setPermanecerLogado,
+    efetuarLogin
+}, dispatch);
+
+const conectado = connect(mapStoreToProps, mapActionsToProps)(LoginScreen);
+export { conectado as LoginScreen };
