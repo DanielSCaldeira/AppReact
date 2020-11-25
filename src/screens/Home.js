@@ -1,42 +1,27 @@
 import React from 'react';
-import { Image, SafeAreaView, Text } from 'react-native';
+import { Image, SafeAreaView } from 'react-native';
 import { Container, Card, View, CardItem, Body, Content } from 'native-base';
+import { connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { defaultStyles, homeStyles } from '../../styles';
 import { HeaderComponent } from '../components/Header';
-import { executeRequest } from '../services/api'
 import { TextDefault } from '../components/Text';
 import { Menu } from '../components/Menu';
 import { FooterFuncef } from '../components/Footer';
 
-export class Home extends React.Component {
+import {
+    getBanner,
+    toggleAllOptions
+} from '../redux/actions/home'
 
-    state = {
-        banner: '',
-        showAllOptions: false
-    }
-
-    async componentDidMount() {
-        try {
-            const resultBanners = await executeRequest('https://autoatendimentoweb.funcef.com.br/apl/Autoatendimento_Web/api/ObterBanner', 'GET');
-
-            if (resultBanners && resultBanners.data && resultBanners.data.Objeto) {
-                const banners = resultBanners.data.Objeto;
-                if (banners && banners.length > 0) {
-                    const first = banners[0];
-                    if (first && first.Imagem) {
-                        this.setState({ banner: first.Imagem });
-                    }
-                }
-            }
-
-        } catch (e) {
-            console.log(e)
-        }
+class HomeScreen extends React.Component {
+    componentDidMount() {
+        this.props.getBanner();
     }
 
     render() {
-        const { banner, showAllOptions } = this.state;
+        const { banner, showAllOptions, toggleAllOptions } = this.props;
 
         return (
             <Container>
@@ -79,7 +64,7 @@ export class Home extends React.Component {
                                 null
                             }
 
-                            <Menu showAllOptions={showAllOptions} setShowAllOptions={showAllOptions => this.setState({ showAllOptions })} />
+                            <Menu showAllOptions={showAllOptions} setShowAllOptions={toggleAllOptions} />
 
                             {showAllOptions === false ?
                                 <>
@@ -129,3 +114,16 @@ export class Home extends React.Component {
         );
     }
 }
+
+const mapStoreToProps = store => ({
+    banner : store.home.banner,
+    showAllOptions : store.home.showAllOptions
+});
+
+const mapActionToProps = dispatch => bindActionCreators({
+    getBanner,
+    toggleAllOptions
+}, dispatch);
+
+const conectado = connect(mapStoreToProps, mapActionToProps) (HomeScreen);
+export { conectado as HomeScreen}

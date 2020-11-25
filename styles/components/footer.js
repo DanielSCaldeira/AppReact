@@ -30,5 +30,13 @@ export const footerStyles = (screenWidth, screenHeight, colors, fonts, RFValue) 
     modal:{
         flex:0.9,
         backgroundColor:colors.white
+    },
+    switch: {
+        marginTop: screenHeight * 0.01,
+        flexDirection: 'column',
+        borderColor: 'transparent',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        width: screenWidth * 0.6
     }
 });

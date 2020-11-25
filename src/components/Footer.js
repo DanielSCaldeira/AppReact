@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, Modal, Text } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import { defaultStyles, footerStyles } from '../../styles'
+import { connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { defaultStyles, footerStyles } from '../../styles';
+import { SwitchFuncef } from '../components/Switch';
+import {
+    setPermanecerLogado
+} from '../redux/actions/login'
 
 Fontisto.loadFont();
 
-export const FooterFuncef = props => {
+const FooterFuncef = props => {
+
+    const {permanecerLogado, setPermanecerLogado} = props;
 
     const [isModalVisible, setModalVibility] = useState(false);
 
@@ -21,6 +30,14 @@ export const FooterFuncef = props => {
                     <View style={[footerStyles.containerone]}>
                         <View style={defaultStyles.container}>
                             <Text>Menu de Opções</Text>
+                            <SwitchFuncef
+                                title="Deseja permanecer logado ao sair do aplicativo?"
+                                negativeOption="Não"
+                                positiveOption="Sim"
+                                onSwitchChange={setPermanecerLogado}
+                                isEnabled={permanecerLogado}
+                                style={footerStyles.switch}
+                            />
                         </View>
                     </View>
                     <TouchableOpacity style={footerStyles.containertwo} onPress={() => setModalVibility(false)}>
@@ -42,3 +59,14 @@ export const FooterFuncef = props => {
         </>
     );
 }
+
+const mapStoreToProps = store => ({
+    permanecerLogado : store.login.permanecerLogado
+});
+
+const mapActionToProps = dispatch => bindActionCreators({
+    setPermanecerLogado
+}, dispatch);
+
+const conectado = connect(mapStoreToProps, mapActionToProps) (FooterFuncef);
+export { conectado as FooterFuncef}
