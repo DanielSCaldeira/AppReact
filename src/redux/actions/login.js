@@ -11,6 +11,7 @@ export const LoginActions = Object.freeze({
     LOGIN_SET_CPF: 'LOGIN_SET_CPF',
     LOGIN_SET_SENHA: 'LOGIN_SET_SENHA',
     LOGIN_SET_PERMANECER_LOGADO: 'LOGIN_SET_PERMANECER_LOGADO',
+    LOGIN_LIMPAR_DADOS_FORM: 'LOGIN_LIMPAR_DADOS_FORM',
 });
 
 export const setCpf = cpf => {
@@ -56,6 +57,10 @@ export const setPermanecerLogado = permanecerLogado => ({
     data: permanecerLogado
 });
 
+export const limparFormLogin = () => ({
+    type: LoginActions.LOGIN_LIMPAR_DADOS_FORM
+})
+
 export const efetuarLogin = (login, navigation) =>{
     return async dispacth => {
         const { cpf, senha, isCPFValido, isSenhaValida } = login;
@@ -79,6 +84,7 @@ export const efetuarLogin = (login, navigation) =>{
                     const usuario = result.data.Objeto;
                     dispacth(setUser(usuario));
                     dispacth(hideSpinner());
+                    dispacth(limparFormLogin());
                     navigation.navigate('Home');
                     return;
                 }

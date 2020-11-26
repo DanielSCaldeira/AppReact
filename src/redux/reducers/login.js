@@ -5,9 +5,7 @@ const INITIAL_STATE = {
     isCPFValido: null,
     senha: '',
     isSenhaValida: null,
-    permanecerLogado: false,
-    loading: false,
-    showToast: false
+    permanecerLogado: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -25,6 +23,10 @@ export default (state = INITIAL_STATE, action) => {
         case LoginActions.LOGIN_SET_PERMANECER_LOGADO : return {
             ...state,
             permanecerLogado : action.data
+        }
+        case LoginActions.LOGIN_LIMPAR_DADOS_FORM : return {
+            ...INITIAL_STATE,
+            permanecerLogado : state.permanecerLogado
         }
         default: return state;
     }
