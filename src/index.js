@@ -12,6 +12,7 @@ import { LoginScreen } from './screens/Login';
 import { ResetPassword } from './screens/ResetPassword';
 import { NotLogged } from './screens/NotLogged';
 import { HomeScreen } from './screens/Home';
+import { CameraScreen } from './screens/Camera';
 import { defaultStyles } from '../styles/';
 
 const Stack = createStackNavigator();
@@ -36,6 +37,7 @@ const App = props => {
                     }
                     <Stack.Screen name="Home" component={HomeScreen} options={{ gestureEnabled: false, header: () => { } }} />
                     <Stack.Screen name="Reset" component={ResetPassword} options={{ header: () => { } }} />
+                    <Stack.Screen name="Camera" component={CameraScreen} options={{ header: () => { } }} />
                     <Stack.Screen name="NotLogged" component={NotLogged} options={{ header: () => { } }} />
                     {permanecerLogado === true && token ?
                         <Stack.Screen name="Login" component={LoginScreen} options={{ header: () => { } }} />

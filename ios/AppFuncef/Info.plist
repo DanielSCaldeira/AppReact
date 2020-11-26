@@ -60,5 +60,20 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <!-- Required with iOS 10 and higher -->
+  <key>NSCameraUsageDescription</key>
+  <string>Você permite o AppFuncef utilizar a camera para atualizar seus dados cadastrais?</string>
+
+  <!-- Required with iOS 11 and higher: include this only if you are planning to use the camera roll -->
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Você permite o AppFuncef utilizar a galeria para atualizar seus dados cadastrais?</string>
+
+  <!-- Include this only if you are planning to use the camera roll -->
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Você permite o AppFuncef utilizar a galeria para atualizar seus dados cadastrais?</string>
+
+  <!-- Include this only if you are planning to use the microphone for video recording -->
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Você permite o AppFuncef utilizar o microfone para atualizar seus dados cadastrais?</string>
 </dict>
 </plist>

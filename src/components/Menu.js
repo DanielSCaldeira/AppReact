@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import { CustomSquare } from './CustomSquare';
 import { defaultStyles, menuStyles } from '../../styles'
@@ -10,83 +11,72 @@ import { TextDefault } from './Text';
 const menus = [
     {
         name: "Auto Atendimento",
-        icone: "user-cog",
-        acao: "AutoAtendimento"
+        icone: "user-cog"
     },
     {
         name: "Concessão Benefício",
-        icone: "user-cog",
-        acao: "ConcessaoBeneficio"
+        icone: "user-cog"
     },
     {
         name: "Empréstimo",
-        icone: "hand-holding-usd",
-        acao: "Emprestimo"
+        icone: "hand-holding-usd"
     },
     {
         name: "Extrato de Empréstimo",
-        icone: "user-cog",
-        acao: "ExtratoEmprestimo"
+        icone: "user-cog"
     },
     {
         name: "Transparência",
-        icone: "user-cog",
-        acao: "ExtratoEmprestimo"
+        icone: "user-cog"
     },
     {
         name: "Clube de Vantagens",
-        icone: "umbrella-beach",
-        acao: "Vantagens"
+        icone: "umbrella-beach"
     },
     {
         name: "Notícias",
-        icone: "user-cog",
-        acao: "Noticias"
+        icone: "user-cog"
     },
     {
         name: "TV FUNCEF",
-        icone: "user-cog",
-        acao: "TvFuncef"
+        icone: "user-cog"
     },
     {
         name: "Fale Conosco",
-        icone: "user-cog",
-        acao: "FaleConosco"
+        icone: "user-cog"
     },
     {
         name: "Carteirinha",
-        icone: "user-cog",
-        acao: "Carteirinha"
+        icone: "user-cog"
     },
     {
         name: "Regulamento",
-        icone: "user-cog",
-        acao: "Regulamento"
+        icone: "user-cog"
     },
     {
         name: "Perguntas Frequentes",
-        icone: "user-cog",
-        acao: "FAQ"
+        icone: "user-cog"
     },
     {
         name: "Ouvidoria",
-        icone: "user-cog",
-        acao: "Ouvidoria"
+        icone: "user-cog"
     },
     {
         name: "Avaliar Atendimento",
-        icone: "star-half-alt",
-        acao: "Avaliar Atendimento"
+        icone: "star-half-alt"
     },
     {
         name: "Organizar",
-        icone: "sort-amount-up-alt",
-        acao: "Organizar"
+        icone: "sort-amount-up-alt"
     },
     {
         name: "Pesquisar",
-        icone: "vote-yea",
-        acao: "Pesquisar"
+        icone: "vote-yea"
+    },
+    {
+        name: "Camera",
+        icone: "camera",
+        acao: "Camera"
     }
 ]
 
@@ -104,6 +94,8 @@ export const Menu = props => {
 
     const { showAllOptions, setShowAllOptions } = props;
 
+    const navigation = useNavigation();
+
     const montaMenuBody = menu => {
         return (
             <View style={defaultStyles.container}>
@@ -116,6 +108,12 @@ export const Menu = props => {
             </View>
         )
     }
+    
+    const performAction = menu => {
+        if(menu && menu.acao && navigation){
+            navigation.navigate(menu.acao);
+        }
+    }
 
     const renderMenus = menus => {
         const result = [];
@@ -125,7 +123,8 @@ export const Menu = props => {
 
             if ((showAllOptions === false && i < 5) || showAllOptions === true) {
                 result.push((
-                    <TouchableOpacity key={'menu-' + i} style={menuStyles.container}>
+                    <TouchableOpacity key={'menu-' + i} style={menuStyles.container}
+                        onPress={() => performAction(menu)}>
                         <CustomSquare body={montaMenuBody(menu)} style={menuStyles.square} />
                     </TouchableOpacity>
                 ));
