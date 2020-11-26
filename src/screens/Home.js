@@ -17,7 +17,8 @@ import {
 
 class HomeScreen extends React.Component {
     componentDidMount() {
-        this.props.getBanner();
+        const {getBanner, lastUpdate} = this.props;
+        getBanner(lastUpdate);
     }
 
     render() {
@@ -117,6 +118,7 @@ class HomeScreen extends React.Component {
 
 const mapStoreToProps = store => ({
     banner : store.home.banner,
+    lastUpdate : store.home.lastUpdate,
     showAllOptions : store.home.showAllOptions
 });
 
